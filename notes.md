@@ -1,7 +1,5 @@
 # CS 260 Notes
 
-I'm just practicing editing
-
 [My startup - Simon](https://simon.cs260.click)
 
 ## Helpful links
@@ -99,3 +97,8 @@ Handling the toggling of the checkboxes was particularly interesting.
   ))}
 </div>
 ```
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+Notes 1/13:
+Always remember to commit - with a message - then push. Pushing is not necessary when working directly in Github.
