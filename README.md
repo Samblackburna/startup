@@ -1,5 +1,4 @@
-# Your startup name here
-Quilted News
+# Quilted News
 
 [My Notes](notes.md)
 
