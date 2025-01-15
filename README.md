@@ -1,15 +1,9 @@
 # Your startup name here
-
-editing the README file...
-
-Dawg I thought I was making changes to the code
-
-... and now I'm editing it from Github itself
+Quilted News
 
 [My Notes](notes.md)
 
-A brief description of the application here. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
+Simple news aggregation application. 
 
 > [!NOTE]
 >  This is a template for your startup application. You must modify this `README.md` file for each phase of your development. You only need to fill in the section for each deliverable when that deliverable is submitted in Canvas. Without completing the section for a deliverable, the TA will not know what to look for when grading your submission. Feel free to add additional information to each deliverable description, but make sure you at least have the list of rubric items and a description of what you did for each item.
@@ -24,45 +18,44 @@ A brief description of the application here. Lorem ipsum dolor sit amet, consect
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] Proper use of Markdown
-- [ ] A concise and compelling elevator pitch
-- [ ] Description of key features
-- [ ] Description of how you will use each technology
-- [ ] One or more rough sketches of your application. Images must be embedded in this file using Markdown image references.
+- [x] Proper use of Markdown
+- [x] A concise and compelling elevator pitch
+- [x] Description of key features
+- [x] Description of how you will use each technology
+- [x] One or more rough sketches of your application. Images must be embedded in this file using Markdown image references.
 
 ### Elevator pitch
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Traditional print news apps largely employ similar web designs, essentially appearing as a list of article links. A news aggregation site that simply queues and shows the reader articles would provide opportunities for increased content targeting. I plan to create the first bit of the app, including a mechanism to view and swipe through articles from a database of webscraped local news articles.
 
 ### Design
 
-![Design image](placeholder.png)
+![Design image](WebpageLayout.png)
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Above is a diagram for my main page layout
 
-```mermaid
-sequenceDiagram
-    actor You
-    actor Website
-    You->>Website: Replace this with your design
-```
+![Design image](BackendLayout.png)
+
+And next is a diagram explaning the backend page design
 
 ### Key features
 
-- Describe your key feature
-- Describe your key feature
-- Describe your key feature
+- Displays article titles, authors, publishing dates, and article content from a database of local news sources
+- Allows users to swipe from article to article (laying the foundation for the future implementation of a predictive algorithm serving readers the stories they are most interested in)
+- Uses an RSS feed from at least one news source to scrape and pull newly published articles into the app's database
 
 ### Technologies
 
 I am going to use the required technologies in the following ways.
 
-- **HTML** - Description here
-- **CSS** - Description here
-- **React** - Description here
-- **Service** - Description here
-- **DB/Login** - Description here
-- **WebSocket** - Description here
+- **HTML** - Two HTML page formats. One for login and another - utilizing varying content - to display actual articles.
+- **CSS** - Application styling ensuring readablility and a consistent brand feel across screen sizes and applications.
+- **React** - Simple swiping application with views componetized and reactive to user's actions.
+- **Service** - Background service with endpoints for:
+    - Randomizing which article is displayed to user
+    - Retrieving time user spends on an article
+- **DB/Login** - Store users. Track time users spend on articles, - prepping for an eventual recommendation algorithm that I won't plan on implementing in this class. Register and login users. Credentials securely stored in database.
+- **WebSocket** - When a new article is added to database, user is notified and article is bumped to from of queue
 
 ## 🚀 AWS deliverable
 
