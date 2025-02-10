@@ -68,13 +68,13 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 - [x] **HTML pages** - Barebones text in places where it will be permanent
 - [x] **Proper HTML element usage** - Yea, I did my best
-- [x] **Links** - same header format
-- [x] **Text** - 
+- [x] **Links** - same header format across pages
+- [x] **Text** - text added where appropriate
 - [x] **3rd party API placeholder** - 
 - [x] **Images** - 
 - [x] **Login placeholder** - 
 - [x] **DB data placeholder** - 
-- [x] **WebSocket placeholder** - 
+- [x] **WebSocket placeholder** - Spots for article content to fill in
 
 ## 🚀 CSS deliverable
 
