@@ -2,6 +2,7 @@ body {
   display: flex;
   flex-direction: column;
   min-width: 375px;
+  font-size: 16px;
 }
 
 header {
@@ -18,6 +19,21 @@ main {
 
 footer {
   flex: 0 40px;
+}
+
+h1 {
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+h3 {
+  font-weight: bold;
+  margin: 0;
 }
 
 menu {
