@@ -1,0 +1,4 @@
+.recent-articles {
+  display: flex;
+  flex-direction: column;
+}

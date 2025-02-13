@@ -6,42 +6,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>quiltednews-html</title>
     <link rel="stylesheet" href="main.css" />
+    <link rel="stylesheet" href="newsSourceHome.css" />
   </head>
   <body>
     <header>
       <!-- Navigation elements -->
-        <nav>
-          <img class="logo" alt="Quilted News" src="QuiltedLogo.png">
-          <ul>
-            <li class="nav-item">
-              <a class="nav-link active" href="index.html">Sign In</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="article.html">Articles</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="newsSourceHome.html">My News Source</a>
-            </li>
-          </ul>
-        </nav>
-        <hr />
-      </header>
+      <nav>
+        <img class="logo" alt="Quilted News" src="QuiltedLogo.png">
+        <ul>
+          <li class="nav-item">
+            <a class="nav-link active" href="index.html">Sign In</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="article.html">Articles</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="newsSourceHome.html">My News Source</a>
+          </li>
+        </ul>
+      </nav>
+      <hr style="margin-bottom: 2px;"/>
+      <hr style="margin-top: 0; padding-top: 0;"/>
+    </header>
     <main>
       <h1>News Source</h1>
       <p>News Source Profile</p>
       <div>
         <h2>Recent Articles</h2>
-        <div>
+        <ul class="recent-articles">
           <li><a href="article.html">Article  Title</a></li>
           <li><a href="article.html">Article  Title</a></li>
           <li><a href="article.html">Article  Title</a></li>
-        </div>
+        </ul>
       </div>
     </main>
     <footer>
       <hr />
       <span class="text-reset">Samuel Blackburn</span>
-      <br />
       <a href="https://github.com/Samblackburna/startup">GitHub</a>
     </footer>
   </body>
