@@ -9,6 +9,13 @@ header {
   flex: 0 80px;
 }
 
+menu {
+  display: flex;
+  flex-direction: row;
+  min-width: 200px;
+  font-weight: bold;
+}
+
 main {
   flex: 1 calc(100vh - 200px);
   display: flex;
@@ -24,6 +31,7 @@ footer {
 h1 {
   font-size: 3rem;
   font-weight: bold;
+  margin: 0;
 }
 
 h2 {
@@ -41,6 +49,7 @@ menu {
   display: flex;
   flex-direction: row !important;
   list-style: none;
+  margin: 0;
 }
 
 .navbar-brand {
