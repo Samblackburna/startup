@@ -7,7 +7,7 @@ export default function App() {
     <div className="body bg-light text-dark">
       <header>
         <nav>
-          <img className="logo" alt="Quilted News" src="QuiltedLogo.png">
+          <img className="logo" alt="Quilted News" src="/public/QuiltedLogo.png" />
           <ul>
             <li className="nav-item">
               <a className="nav-link active" href="index.html">Sign In</a>
@@ -27,10 +27,10 @@ export default function App() {
 
       </main>
       <footer>
-      <hr />
-      <span class="text-reset">Samuel Blackburn</span>
-      <a href="https://github.com/Samblackburna/startup">GitHub</a>
-    </footer>
+        <hr />
+        <span class="text-reset">Samuel Blackburn</span>
+        <a href="https://github.com/Samblackburna/startup">GitHub</a>
+      </footer>
     </div>
   );
 }
