@@ -37,9 +37,9 @@ export default function App() {
           <Route path='*' element={<NotFound />} />
         </Routes>
         
+        <hr style={{ marginBottom: "0" }}/>
         <footer>
-          <hr />
-          <span className="text-reset">Samuel Blackburn</span>
+          <span className="text-reset">Sam Blackburn</span>
           <a href="https://github.com/Samblackburna/startup">GitHub</a>
         </footer>
       </div>

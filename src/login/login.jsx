@@ -1,6 +1,10 @@
 import React from 'react';
 
 export function Login() {
+  const handleButtonClick = (event) => {
+    event.preventDefault();
+  }
+
   return (
     <main>
       <div>
@@ -16,8 +20,8 @@ export function Login() {
           <input type="text" />
         </div>
         <div style={{ width: '100%' }} className="button-holder">
-          <button style={{ width: '100%' }} type="submit">Sign in</button>
-          <button type="submit">Create</button>
+          <button style={{ width: '100%' }} type="submit" onClick={handleButtonClick}>Sign in</button>
+          <button type="submit" onClick={handleButtonClick}>Create</button>
         </div>
       </form>
     </main>

@@ -54,6 +54,16 @@ nav {
 
 footer {
   flex: 0 40px;
+  width: 100%;
+  background-color: none;
+  padding: 1rem 1rem;
+  font-size: 1rem;
+  color: #000000;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  bottom: 0;
+  margin-top: 0;
 }
 
 ul {
@@ -98,7 +108,12 @@ ul .nav-item {
 }
 
 footer a {
-  float: right;
+  text-decoration: none;
+  color: inherit;
+}
+
+footer a:hover {
+  text-decoration: underline;
 }
 
 .sign-in-notice {
@@ -122,7 +137,7 @@ form {
 }
 
 input {
-  width: 93%;
+  width: 100%;
   padding: 0.5rem;
 }
 
