@@ -1,6 +1,12 @@
 import React from 'react';
 import './articles.css';
 
+const articles = [
+  { title: "Article Title 1", subtitle: "Subtitle 1", newsSource: "News Source 1", authors: "Author(s) 1", publicationDate: "Publication Date 1", content: "Main Article Content 1" },
+  { title: "Article Title 2", subtitle: "Subtitle 2", newsSource: "News Source 2", authors: "Author(s) 2", publicationDate: "Publication Date 2", content: "Main Article Content 2" },
+  { title: "Article Title 3", subtitle: "Subtitle 3", newsSource: "News Source 3", authors: "Author(s) 3", publicationDate: "Publication Date 3", content: "Main Article Content 3" },
+]
+
 export function Articles() {
   return (
     <main>
