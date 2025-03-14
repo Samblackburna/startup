@@ -1,7 +1,12 @@
 import React from 'react';
 import './newsSourceHome.css';
 
-export function NewsSourceHome() {
+export function NewsSourceHome(
+  { selectedNewsSource, setSelectedNewsSource }) {
+    const handleChange = (event) => {
+      setSelectedNewsSource(event.target.value);
+    };
+    
   return (
     <main>
       <label className="Select-News-Source" for="options">Select your local news source</label>

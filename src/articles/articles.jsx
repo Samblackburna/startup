@@ -36,6 +36,7 @@ export function Articles() {
     <main>
       <div className="side-zone left-zone" onClick={treatPreviousArticle}></div>
       <div className="side-zone right-zone" onClick={treatNextArticle}></div>
+      {currentArticle}
       <h1 style={{ margin: 0 }}>{currentArticle.title}</h1>
       <h2 style={{ margin: 0 }}>{currentArticle.subtitle}</h2>
       <div className="article-other-info">

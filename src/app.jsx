@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
 
@@ -8,6 +10,8 @@ import { Articles } from './articles/articles';
 import { NewsSourceHome } from './newsSourceHome/newsSourceHome';
 
 export default function App() {
+const [selectedNewsSource, setSelectedNewsSource] = useState('New York Times');
+
   return (
     <BrowserRouter>
       <div className="body">
