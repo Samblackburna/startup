@@ -21,23 +21,32 @@ h3 {
   position: fixed;
   top: 0;
   bottom: 0;
-  width: 50px;
+  width: 200px;
   cursor: pointer;
   z-index: 1000;
+  bottom: 57.2px;
 }
 
 .left-zone {
   left: 0;
-  background-color: rgb(255, 255, 255);
 }
 
 .right-zone {
   right: 0;
-  background-color: rgb(255, 255, 255);
 }
 
 .side-zone:hover {
   background-color: rgb(205, 201, 201);
+}
+
+.left-zone:hover{
+  background: linear-gradient(to left, rgb(255, 255, 255), rgb(234, 230, 230));
+  opacity: 0.4;
+}
+
+.right-zone:hover{
+  background: linear-gradient(to right, rgb(255, 255, 255), rgb(234, 230, 230));
+  opacity: 0.4;
 }
 
 /* Existing styles */

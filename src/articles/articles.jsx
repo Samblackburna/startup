@@ -27,28 +27,13 @@ export function Articles() {
       <h1 style={{ margin: 0 }}>{currentArticle.title}</h1>
       <h2 style={{ margin: 0 }}>{currentArticle.subtitle}</h2>
       <div className="article-other-info">
-        <h3 className="news-source-name">{currentArticle.source}</h3>
+        <h3 className="news-source-name">{currentArticle.newsSource}</h3>
         <h3 className="authors">{currentArticle.authors}</h3>
-        <h3 className="publication date">{currentArticle.date}</h3>
+        <h3 className="publication date">{currentArticle.publicationDate}</h3>
       </div>
       <div className="main-article-content">
         <p>
           {currentArticle.content}
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad, in. Consectetur praesentium ullam pariatur maiores commodi aspernatur magni eaque repellat, libero rem alias tempore sit, magnam corrupti molestiae! Tempore, excepturi. Lorem ipsum dolor sit amet, consectetur adipisicing elit. A et fugit earum quam itaque consequuntur. Voluptatibus quod officiis at reprehenderit enim tenetur molestiae. Praesentium, reprehenderit? Quo accusantium in repellendus tenetur.
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi at, tempore facilis ipsam cum est saepe velit sed quisquam architecto ratione ab officia doloremque libero facere beatae quo iste. Optio? Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aperiam numquam id inventore adipisci animi dicta quis vel corrupti maxime vero, eius in est, ab voluptatem! Facilis, quis autem? Repellendus, sapiente!
-        </p>
-        <p>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Veniam, quas consectetur at dicta impedit quis molestiae, quos voluptas explicabo voluptates repellat sequi rem consequuntur magnam vero quia provident, minus cumque! Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt aperiam ea, sed, ex, harum ipsam distinctio nisi autem eveniet veniam laboriosam animi neque officia esse voluptate nemo reprehenderit qui quas?
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio quam, aliquam ipsa quibusdam saepe quae earum ipsam, architecto nostrum dolorum quos molestias sunt consequatur corrupti quasi, ratione magni nisi officia! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur voluptas optio minima quia temporibus fuga, asperiores neque sed, doloribus iusto a cupiditate! Minima quo et dolor quod maxime numquam dicta. Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium accusamus dolorum iste porro, corporis alias, dignissimos, repellat vitae doloribus expedita possimus delectus mollitia distinctio labore necessitatibus earum officia nobis eum.
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. In ullam ea necessitatibus reprehenderit commodi dolor dignissimos sint dolores hic omnis quam quaerat aperiam earum eos, labore minus delectus optio! Quasi. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sit aspernatur temporibus officiis, fugiat rem repellendus eos error explicabo hic at quaerat dolores vitae, nam, quam sed modi expedita cumque eius. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iste minus recusandae omnis quo error voluptates, molestiae odit accusantium, enim quis harum minima totam asperiores doloremque modi corporis perspiciatis accusamus iusto.
         </p>
       </div>
     </main>
