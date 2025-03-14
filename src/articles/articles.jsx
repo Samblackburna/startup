@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './articles.css';
 
 const articles = [
@@ -8,18 +8,32 @@ const articles = [
 ]
 
 export function Articles() {
+  const [articleIndex, setArticleIndex] = useState(0);
+
+  const treatPreviousArticle = () => {
+    setArticleIndex((previousArticleIndex) => (previousArticleIndex > 0 ? previousArticleIndex - 1 : articles.length - 1));
+  }
+
+  const treatNextArticle = () => {
+    setArticleIndex((previousArticleIndex) => (previousArticleIndex < articles.length - 1 ? previousArticleIndex + 1 : 0));
+  }
+
+  const currentArticle = articles[articleIndex];
+
   return (
     <main>
-      <h1 style={{ margin: 0 }}>Article Title</h1>
-      <h2 style={{ margin: 0 }}>Subtitle</h2>
+      <div className="side-zone left-zone" onClick={treatPreviousArticle}></div>
+      <div className="side-zone right-zone" onClick={treatNextArticle}></div>
+      <h1 style={{ margin: 0 }}>{currentArticle.title}</h1>
+      <h2 style={{ margin: 0 }}>{currentArticle.subtitle}</h2>
       <div className="article-other-info">
-        <h3 className="news-source-name">News Source</h3>
-        <h3 className="authors">Author(s)</h3>
-        <h3 className="publication date">Publication Date</h3>
+        <h3 className="news-source-name">{currentArticle.source}</h3>
+        <h3 className="authors">{currentArticle.authors}</h3>
+        <h3 className="publication date">{currentArticle.date}</h3>
       </div>
       <div className="main-article-content">
         <p>
-          Main Article Content
+          {currentArticle.content}
         </p>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad, in. Consectetur praesentium ullam pariatur maiores commodi aspernatur magni eaque repellat, libero rem alias tempore sit, magnam corrupti molestiae! Tempore, excepturi. Lorem ipsum dolor sit amet, consectetur adipisicing elit. A et fugit earum quam itaque consequuntur. Voluptatibus quod officiis at reprehenderit enim tenetur molestiae. Praesentium, reprehenderit? Quo accusantium in repellendus tenetur.
