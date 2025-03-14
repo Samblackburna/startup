@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
-import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
-
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
-
 import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
 import { Login } from './login/login';
 import { Articles } from './articles/articles';
@@ -36,8 +33,8 @@ const [selectedNewsSource, setSelectedNewsSource] = useState('New York Times');
 
         <Routes>
           <Route path='/' element={<Login />} />
-          <Route path='/articles' element={<Articles />} />
-          <Route path='/newsSourceHome' element={<NewsSourceHome />} />
+          <Route path='/articles' element={<Articles selectedNewsSource={selectedNewsSource} />}/>
+          <Route path='/newsSourceHome' element={<NewsSourceHome selectedNewsSource={selectedNewsSource} setSelectedNewsSource={setSelectedNewsSource} />} />
           <Route path='*' element={<NotFound />} />
         </Routes>
         

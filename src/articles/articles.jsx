@@ -11,32 +11,52 @@ const articles = [
   { title: "Article Title 6", subtitle: "Subtitle 6", newsSource: "Sam's News Source", authors: "Author(s) 6", publicationDate: "Publication Date 6", content: "Main Article Content 6" },
 ]
 
-export function Articles() {
+export function Articles({ selectedNewsSource }) {
   const [articleIndex, setArticleIndex] = useState(0);
   const [filteredArticles, setFilteredArticles] = useState([]);
 
   useEffect(() => {
-    const filtered = articles.filter(article => article.newsSource === selectedNewsSource);
-    setFilteredArticles(filtered);
-    setArticleIndex(0);
-    }, [selectedNewsSource]
-  );
+    try {
+      const filtered = articles.filter(article => article.newsSource === selectedNewsSource);
+      setFilteredArticles(filtered);
+      setArticleIndex(0);
+    } catch (error) {
+      console.error("Error filtering articles:", error);
+    }
+  }, [selectedNewsSource]);
 
   const treatPreviousArticle = () => {
-    setArticleIndex((previousArticleIndex) => (previousArticleIndex > 0 ? previousArticleIndex - 1 : articles.length - 1));
-  }
+    setArticleIndex((previousArticleIndex) => 
+      (previousArticleIndex > 0 ? previousArticleIndex - 1 : filteredArticles.length - 1)
+    );
+  };
 
   const treatNextArticle = () => {
-    setArticleIndex((previousArticleIndex) => (previousArticleIndex < articles.length - 1 ? previousArticleIndex + 1 : 0));
+    setArticleIndex((previousArticleIndex) => 
+      (previousArticleIndex < filteredArticles.length - 1 ? previousArticleIndex + 1 : 0)
+    );
+  };
+
+  let currentArticle;
+  try {
+    currentArticle = filteredArticles[articleIndex];
+  } catch (error) {
+    console.error("Error accessing current article:", error);
+    currentArticle = null;
   }
 
-  const currentArticle = articles[articleIndex];
+  if (!currentArticle) {
+    return (
+      <main>
+        <h1>No articles available for the selected news source.</h1>
+      </main>
+    );
+  }
 
   return (
     <main>
       <div className="side-zone left-zone" onClick={treatPreviousArticle}></div>
       <div className="side-zone right-zone" onClick={treatNextArticle}></div>
-      {currentArticle}
       <h1 style={{ margin: 0 }}>{currentArticle.title}</h1>
       <h2 style={{ margin: 0 }}>{currentArticle.subtitle}</h2>
       <div className="article-other-info">
