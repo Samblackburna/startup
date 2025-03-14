@@ -1,14 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './articles.css';
 
+// This is a mock list of articles that will be fetched from a server once I have the backend server set up
 const articles = [
-  { title: "Article Title 1", subtitle: "Subtitle 1", newsSource: "News Source 1", authors: "Author(s) 1", publicationDate: "Publication Date 1", content: "Main Article Content 1" },
-  { title: "Article Title 2", subtitle: "Subtitle 2", newsSource: "News Source 2", authors: "Author(s) 2", publicationDate: "Publication Date 2", content: "Main Article Content 2" },
-  { title: "Article Title 3", subtitle: "Subtitle 3", newsSource: "News Source 3", authors: "Author(s) 3", publicationDate: "Publication Date 3", content: "Main Article Content 3" },
+  { title: "Article Title 1", subtitle: "Subtitle 1", newsSource: "New York Times", authors: "Author(s) 1", publicationDate: "Publication Date 1", content: "Main Article Content 1" },
+  { title: "Article Title 2", subtitle: "Subtitle 2", newsSource: "New York Times", authors: "Author(s) 2", publicationDate: "Publication Date 2", content: "Main Article Content 2" },
+  { title: "Article Title 3", subtitle: "Subtitle 3", newsSource: "Salt Lake Tribune", authors: "Author(s) 3", publicationDate: "Publication Date 3", content: "Main Article Content 3" },
+  { title: "Article Title 4", subtitle: "Subtitle 4", newsSource: "Salt Lake Tribune", authors: "Author(s) 4", publicationDate: "Publication Date 4", content: "Main Article Content 4" },
+  { title: "Article Title 5", subtitle: "Subtitle 5", newsSource: "Sam's News Source", authors: "Author(s) 5", publicationDate: "Publication Date 5", content: "Main Article Content 5" },
+  { title: "Article Title 6", subtitle: "Subtitle 6", newsSource: "Sam's News Source", authors: "Author(s) 6", publicationDate: "Publication Date 6", content: "Main Article Content 6" },
 ]
 
 export function Articles() {
   const [articleIndex, setArticleIndex] = useState(0);
+  const [filteredArticles, setFilteredArticles] = useState([]);
+
+  useEffect(() => {
+    const filtered = articles.filter(article => article.newsSource === selectedNewsSource);
+    setFilteredArticles(filtered);
+    setArticleIndex(0);
+    }, [selectedNewsSource]
+  );
 
   const treatPreviousArticle = () => {
     setArticleIndex((previousArticleIndex) => (previousArticleIndex > 0 ? previousArticleIndex - 1 : articles.length - 1));
