@@ -1,19 +1,27 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export function Login() {
-  const [text, setText] = React.useState('');
+  const [username, setUsername] = React.useState('');
+  const [password, setPassword] = React.useState('');
+  const navigate = useNavigate();
 
-  const handleButtonClick = (event) => {
+  function handleLogin(event) {
     event.preventDefault();
+    if (username) {
+      localStorage.setItem('user', username);
+      navigate('/articles');
+    } else {
+      alert('Please enter a username or email to sign in.');
+    }
   }
 
-  function loginUser(event) {
-    event.preventDefault();
-    localStorage.setItem('user', text);
+  function handleUsernameChange(e) {
+    setUsername(e.target.value);
   }
 
-  function textChange(e) {
-    setText(e.target.value);
+  function handlePasswordChange(e) {
+    setPassword(e.target.value);
   }
 
   return (
@@ -21,18 +29,17 @@ export function Login() {
       <div>
         <h3 className="sign-in-notice">Sign in or create account</h3>
       </div>
-      <form>
+      <form onSubmit={handleLogin}>
         <div style={{ width: '100%' }}>
           <span className="sign-in">Email or Username</span>
-          <input type="text" onChange={textChange} />
+          <input type="text" value={username} onChange={handleUsernameChange} />
         </div>
         <div style={{ width: '100%' }}>
           <span className="sign-in">Password</span>
-          <input type="text" onChange={textChange} />
+          <input type="password" value={password} onChange={handlePasswordChange} />
         </div>
         <div style={{ width: '100%' }} className="button-holder">
-          <button style={{ width: '100%' }} type="submit" onClick={loginUser}>Login</button>
-          <button type="submit" onClick={handleButtonClick}>Create</button>
+          <button style={{ width: '100%' }} type="submit">Login or Create Account</button>
         </div>
       </form>
     </main>

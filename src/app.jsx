@@ -5,6 +5,7 @@ import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
 import { Login } from './login/login';
 import { Articles } from './articles/articles';
 import { NewsSourceHome } from './newsSourceHome/newsSourceHome';
+import { PrivateRoute } from './PrivateRoute';
 
 export default function App() {
 const [selectedNewsSource, setSelectedNewsSource] = useState('New York Times');
@@ -33,7 +34,11 @@ const [selectedNewsSource, setSelectedNewsSource] = useState('New York Times');
 
         <Routes>
           <Route path='/' element={<Login />} />
-          <Route path='/articles' element={<Articles selectedNewsSource={selectedNewsSource} />}/>
+          <Route path='/articles' element={
+            <PrivateRoute>
+              <Articles selectedNewsSource={selectedNewsSource} />
+            </PrivateRoute>
+          } />
           <Route path='/newsSourceHome' element={<NewsSourceHome selectedNewsSource={selectedNewsSource} setSelectedNewsSource={setSelectedNewsSource} />} />
           <Route path='*' element={<NotFound />} />
         </Routes>
