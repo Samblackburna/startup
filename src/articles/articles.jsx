@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './articles.css';
 
-// This is a mock list of articles that will be fetched from a server once I have the backend server set up
+// This is a mock list of articles that will be fetched from a backend once I have a server set up
 const articles = [
   { title: "Article Title 1", subtitle: "Subtitle 1", newsSource: "New York Times", authors: "Author(s) 1", publicationDate: "Publication Date 1", content: "Main Article Content 1" },
   { title: "Article Title 2", subtitle: "Subtitle 2", newsSource: "New York Times", authors: "Author(s) 2", publicationDate: "Publication Date 2", content: "Main Article Content 2" },
