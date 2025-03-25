@@ -3,8 +3,13 @@ const bcrypt = require('bcryptjs');
 const express = require('express');
 const uuid = require('uuid');
 const app = express();
+const fetch = require('node-fetch'); 
+require('dotenv').config();
+
 
 const authCookieName = 'token';
+
+const users = [];
 
 // As per service instructions: The service port. In production the front-end code is statically hosted by the service on the same port.
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
@@ -67,6 +72,28 @@ const verifyAuth = async (req, res, next) => {
     res.status(401).send({ msg: 'Unauthorized' });
   }
 };
+
+// Begin Importing articles
+
+// API Key: 8a96e12dfe284e6880c7d5bfac7dbedf
+var URL = 'https://newsapi.org/v2/top-headlines?' +
+          'sources=politico,the-wall-street-journal' +
+          'apiKey=8a96e12dfe284e6880c7d5bfac7dbedf';
+
+apiRouter.get('/articles', async (req, res) => {
+  try {
+    const response = await fetch(URL, {
+      headers: { 'Authorization': `Bearer ${process.env.API_KEY}` },
+    });
+    const articles = await response.json();
+    res.send(articles);
+  } catch (error) {
+    console.error('Error fetching articles:', error);
+    res.status(500).send({ msg: 'Failed to fetch articles' });
+  }
+});
+
+// End Importing Articles
 
 async function createUser(email, password) {
   const passwordHash = await bcrypt.hash(password, 10);
