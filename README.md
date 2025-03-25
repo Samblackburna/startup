@@ -91,16 +91,16 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [x] **Bundled using Vite** - 
-- [x] **Components** - 
-- [x] **Router** - 
+- [x] **Bundled using Vite** - Modeled the Simon example
+- [x] **Components** - Modeled the Simon example
+- [x] **Router** - Likewise, modeled Simon example, switched to router website navigation through .JSX files
 
 ## 🚀 React part 2: Reactivity
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [x] **All functionality implemented or mocked out** - 
-- [x] **Hooks** - 
+- [x] **All functionality implemented or mocked out** - Created all the .JSX and CSS files for navigating the website
+- [x] **Hooks** - Created the spots where I'll eventually call APIs and other backend services to help create the real functionality
 
 ## 🚀 Service deliverable
 
