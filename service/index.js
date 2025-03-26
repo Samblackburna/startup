@@ -76,17 +76,14 @@ const verifyAuth = async (req, res, next) => {
 // Begin Importing articles
 
 // API Key: 8a96e12dfe284e6880c7d5bfac7dbedf
-var URL = 'https://newsapi.org/v2/top-headlines?' +
-          'sources=politico,the-wall-street-journal' +
-          'apiKey=8a96e12dfe284e6880c7d5bfac7dbedf';
 
 apiRouter.get('/articles', async (req, res) => {
+  const source = req.query.source;
+  const URL = `https://newsapi.org/v2/top-headlines?sources=${source}&apiKey=8a96e12dfe284e6880c7d5bfac7dbedf`;
   try {
-    const response = await fetch(URL, {
-      headers: { 'Authorization': `Bearer ${process.env.API_KEY}` },
-    });
+    const response = await fetch(URL);
     const articles = await response.json();
-    res.send(articles);
+    res.send(articles.articles);
   } catch (error) {
     console.error('Error fetching articles:', error);
     res.status(500).send({ msg: 'Failed to fetch articles' });

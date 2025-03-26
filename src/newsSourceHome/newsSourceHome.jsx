@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './newsSourceHome.css';
+
+const [selectedNewsSource, setSelectedNewsSource] = useState('politico');
 
 export function NewsSourceHome(
   { selectedNewsSource, setSelectedNewsSource }) {
@@ -16,8 +18,8 @@ export function NewsSourceHome(
         name="options" 
         onChange={handleChange}
       >
-        <option value="Wall Street Journal">Wall Street Journal</option>
-        <option value="Politico">Politico</option>
+        <option value="the-wall-street-journal">Wall Street Journal</option>
+        <option value="politico">Politico</option>
         <option value="Sam's News Source">Sam's News Source</option>
       </select>
     </main>
