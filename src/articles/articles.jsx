@@ -15,7 +15,7 @@ export function Articles({ selectedNewsSource }) {
   const [articleIndex, setArticleIndex] = useState(0);
   const [filteredArticles, setFilteredArticles] = useState([]);
 
-  useEffect(() => {
+  /* useEffect(() => {
     try {
       const filtered = articles.filter(article => article.newsSource === selectedNewsSource);
       setFilteredArticles(filtered);
@@ -23,6 +23,17 @@ export function Articles({ selectedNewsSource }) {
     } catch (error) {
       console.error("Error filtering articles:", error);
     }
+  }, [selectedNewsSource]); */
+
+  useEffect(() => {
+    fetch('/api/articles')
+    .then((response) => response.json())
+    .then((data) => {
+      const filtered = data.filter(article => article.newsSource === selectedNewsSource);
+      setFilteredArticles(filtered);
+      setArticleIndex(0);
+    })
+    .catch((error) => console.error('Error fetching articles:', error));
   }, [selectedNewsSource]);
 
   const treatPreviousArticle = () => {

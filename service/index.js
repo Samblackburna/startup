@@ -95,6 +95,7 @@ apiRouter.get('/articles', async (req, res) => {
 
 // End Importing Articles
 
+// From SIMON: ASYNC functions
 async function createUser(email, password) {
   const passwordHash = await bcrypt.hash(password, 10);
 

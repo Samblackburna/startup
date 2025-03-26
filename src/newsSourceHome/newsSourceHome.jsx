@@ -16,8 +16,8 @@ export function NewsSourceHome(
         name="options" 
         onChange={handleChange}
       >
-        <option value="New York Times">New York Times</option>
-        <option value="Salt Lake Tribune">Salt Lake Tribune</option>
+        <option value="Wall Street Journal">Wall Street Journal</option>
+        <option value="Politico">Politico</option>
         <option value="Sam's News Source">Sam's News Source</option>
       </select>
     </main>
