@@ -5,6 +5,8 @@ const uuid = require('uuid');
 const app = express();
 const fetch = require('node-fetch'); 
 require('dotenv').config();
+const cors = require('cors');
+app.use(cors());
 
 
 const authCookieName = 'token';
@@ -83,7 +85,18 @@ apiRouter.get('/articles', async (req, res) => {
   try {
     const response = await fetch(URL);
     const articles = await response.json();
-    res.send(articles.articles);
+
+    // Transform the articles to match frontend expectations
+    const transformedArticles = articles.articles.map((article) => ({
+      title: article.title,
+      subtitle: article.description || '', // Use description as subtitle
+      newsSource: article.source.name, // Use source.name as newsSource
+      authors: article.author || 'Unknown', // Use author or default to 'Unknown'
+      publicationDate: article.publishedAt, // Use publishedAt as publicationDate
+      content: article.content || '', // Use content or default to an empty string
+    }));
+
+    res.send(transformedArticles);
   } catch (error) {
     console.error('Error fetching articles:', error);
     res.status(500).send({ msg: 'Failed to fetch articles' });

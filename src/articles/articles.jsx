@@ -69,16 +69,16 @@ export function Articles({ selectedNewsSource }) {
     <main>
       <div className="side-zone left-zone" onClick={treatPreviousArticle}></div>
       <div className="side-zone right-zone" onClick={treatNextArticle}></div>
-      <h1 style={{ margin: 0 }}>{currentArticle.title}</h1>
-      <h2 style={{ margin: 0 }}>{currentArticle.subtitle}</h2>
+      <h1 style={{ margin: 0 }}>{currentArticle.title || 'No Title Available'}</h1>
+      <h2 style={{ margin: 0 }}>{currentArticle.subtitle || 'No Subtitle Available'}</h2>
       <div className="article-other-info">
-        <h3 className="news-source-name">{currentArticle.newsSource}</h3>
-        <h3 className="authors">{currentArticle.authors}</h3>
-        <h3 className="publication date">{currentArticle.publicationDate}</h3>
+        <h3 className="news-source-name">{currentArticle.newsSource || 'Unknown Source'}</h3>
+        <h3 className="authors">{currentArticle.authors || 'Unknown Author(s)'}</h3>
+        <h3 className="publication date">{currentArticle.publicationDate || 'Unknown Date'}</h3>
       </div>
       <div className="main-article-content">
         <p>
-          {currentArticle.content}
+          {currentArticle.content || 'No Content Available'}
         </p>
       </div>
     </main>
