@@ -1,17 +1,14 @@
 import React, { useState } from 'react';
 import './newsSourceHome.css';
 
-const [selectedNewsSource, setSelectedNewsSource] = useState('politico');
+export function NewsSourceHome({ selectedNewsSource, setSelectedNewsSource }) {
+  const handleChange = (event) => {
+    setSelectedNewsSource(event.target.value);
+  };
 
-export function NewsSourceHome(
-  { selectedNewsSource, setSelectedNewsSource }) {
-    const handleChange = (event) => {
-      setSelectedNewsSource(event.target.value);
-    };
-    
   return (
     <main>
-      <label className="Select-News-Source" for="options">Select your local news source</label>
+      <label className="Select-News-Source" htmlFor="options">Select your local news source</label>
       <select 
         style={{ marginTop: '8px' }} 
         id="options" 

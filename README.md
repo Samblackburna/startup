@@ -106,11 +106,11 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Node.js/Express HTTP service** - 
-- [ ] **Static middleware for frontend** - 
-- [ ] **Calls to third party endpoints** - 
-- [ ] **Backend service endpoints** - 
-- [ ] **Frontend calls service endpoints** - 
+- [x] **Node.js/Express HTTP service** - Used to connect front and backend services
+- [x] **Static middleware for frontend** - Used middleware for login
+- [x] **Calls to third party endpoints** - Made API calls for actual news content
+- [x] **Backend service endpoints** - Pulled from API and frontend sources
+- [x] **Frontend calls service endpoints** - Pulled from backend sources
 
 ## 🚀 DB/Login deliverable
 
