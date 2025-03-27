@@ -1,7 +1,32 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-export function Login() {
+import { Unauthenticated } from './unauthenticated';
+import { Authenticated } from './authenticated';
+import { AuthState } from './authState';
+
+export function Login({ userName, authState, onAuthChange }) {
+  return (
+    <main className='container-fluid bg-secondary text-center'>
+      <div>
+        {authState !== AuthState.Unknown && <h1></h1>}
+        {authState === AuthState.Authenticated && (
+          <Authenticated userName={userName} onLogout={() => onAuthChange(userName, AuthState.Unauthenticated)} />
+        )}
+        {authState === AuthState.Unauthenticated && (
+          <Unauthenticated
+            userName={userName}
+            onLogin={(loginUserName) => {
+              onAuthChange(loginUserName, AuthState.Authenticated);
+            }}
+          />
+        )}
+      </div>
+    </main>
+  )
+}
+/*
+  export function Login() {
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
   const navigate = useNavigate();
@@ -39,9 +64,11 @@ export function Login() {
           <input type="password" value={password} onChange={handlePasswordChange} />
         </div>
         <div style={{ width: '100%' }} className="button-holder">
-          <button style={{ width: '100%' }} type="submit">Login or Create Account</button>
+          <button style={{ width: '100%' }} type="submit">Login</button>
+          <button style={{ width: '100%' }} type="submit">Create Account</button>
         </div>
       </form>
     </main>
   );
 }
+  */
