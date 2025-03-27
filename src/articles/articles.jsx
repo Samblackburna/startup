@@ -80,6 +80,10 @@ export function Articles({ selectedNewsSource }) {
         <p>
           {currentArticle.content || 'No Content Available'}
         </p>
+        <p>
+          {currentArticle.url || 'No URL Available'}
+        </p>
+        <a href={currentArticle.url} target="_blank" rel="noopener noreferrrer">Read Full Article</a>
       </div>
     </main>
   );

@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 const express = require('express');
 const uuid = require('uuid');
 const app = express();
-const fetch = require('node-fetch'); 
+const fetch = require('node-fetch');
 require('dotenv').config();
 const cors = require('cors');
 app.use(cors());
@@ -94,6 +94,7 @@ apiRouter.get('/articles', async (req, res) => {
       authors: article.author || 'Unknown', // Use author or default to 'Unknown'
       publicationDate: article.publishedAt, // Use publishedAt as publicationDate
       content: article.content || '', // Use content or default to an empty string
+      url: article.url, // Full URL
     }));
 
     res.send(transformedArticles);
