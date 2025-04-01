@@ -79,7 +79,7 @@ const verifyAuth = async (req, res, next) => {
 
 // API Key: 8a96e12dfe284e6880c7d5bfac7dbedf
 
-apiRouter.get('/articles', async (req, res) => {
+apiRouter.get('/articles', verifyAuth, async (req, res) => {
   const source = req.query.source;
   const URL = `https://newsapi.org/v2/top-headlines?sources=${source}&apiKey=8a96e12dfe284e6880c7d5bfac7dbedf`;
   try {

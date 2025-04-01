@@ -1,22 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { Navigate } from 'react-router-dom';
+import { AuthState } from './login/authState';
 
-export function PrivateRoute({ children }) {
-  const [showNotice, setShowNotice] = useState(false);
-  const user = localStorage.getItem('user');
+export function PrivateRoute({ authState, children }) {
+  if (authState === AuthState.Unknown) {
+    // Cool loading screen
+    return <div>Loading...</div>;
+  }
 
-  if (!user) {
-    return (
-      <div>
-        {showNotice && (
-          <div className="alert alert-warning">
-            You must sign in to access this page.
-          </div>
-        )}
-        <main>
-          <h1>Please sign in to view articles.</h1>
-        </main>
-      </div>
-    );
+  if (authState === AuthState.Unauthenticated) {
+    return <Navigate to="/" replace />;
   }
 
   return children;
