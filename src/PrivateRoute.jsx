@@ -9,7 +9,11 @@ export function PrivateRoute({ authState, children }) {
   }
 
   if (authState === AuthState.Unauthenticated) {
-    return <Navigate to="/" replace />;
+    return (
+      <div style={{ textAlign: 'center', marginBottom: '400px' }}>
+        <h3 style={{ textWeight: ''}}>Sign in to access articles.</h3>
+      </div>
+    )
   }
 
   return children;

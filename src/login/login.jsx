@@ -11,7 +11,7 @@ export function Login({ userName, authState, onAuthChange }) {
   return (
     <main className="loginPageSignedIn">
       <div>
-        {authState !== AuthState.Unknown && <h1>Welcome to Quilted News!</h1>}
+        {authState !== AuthState.Unknown}
         {authState === AuthState.Authenticated && (
           <Authenticated
             userName={userName}
