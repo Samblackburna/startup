@@ -3,8 +3,8 @@ const bcrypt = require('bcryptjs');
 const express = require('express');
 const uuid = require('uuid');
 const app = express();
-const fetch = require('node-fetch');
-require('dotenv').config();
+// const fetch = require('node-fetch');
+// require('dotenv').config();
 const cors = require('cors');
 app.use(cors());
 
