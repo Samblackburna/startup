@@ -1,0 +1,74 @@
+.article-other-info {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+h1 {
+  text-align: center;
+  font-size: 2rem;
+  width: 60%;
+}
+
+h2 {
+  text-align: center;
+  font-size: 1.25rem;
+  width: 60%;
+  font-weight: 200;
+}
+
+h3 {
+  font-size: 1rem;
+  font-weight: 300;
+}
+
+.article-other-info {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.main-article-content {
+  width: 60%;
+}
+
+.side-zone {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 200px;
+  cursor: pointer;
+  z-index: 1000;
+  bottom: 57.2px;
+}
+
+.left-zone {
+  left: 0;
+}
+
+.right-zone {
+  right: 0;
+}
+
+.side-zone:hover {
+  background-color: rgb(205, 201, 201);
+}
+
+.left-zone:hover{
+  background: linear-gradient(to left, rgb(255, 255, 255), rgb(234, 230, 230));
+  opacity: 0.4;
+}
+
+.right-zone:hover{
+  background: linear-gradient(to right, rgb(255, 255, 255), rgb(234, 230, 230));
+  opacity: 0.4;
+}
+
+/* Existing styles */
+.article-other-info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.main-article-content {
+  margin-top: 20px;
+}

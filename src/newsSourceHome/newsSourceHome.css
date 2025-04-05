@@ -1,0 +1,16 @@
+.recent-articles {
+  display: flex;
+  flex-direction: column;
+}
+
+.Select-News-Source {
+  font-size: 1.2rem;
+}
+
+.recent-articles {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  
+}
