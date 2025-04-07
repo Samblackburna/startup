@@ -5,8 +5,11 @@ const uuid = require('uuid');
 const app = express();
 // const fetch = require('node-fetch');
 // require('dotenv').config();
-const cors = require('cors');
-app.use(cors());
+// const cors = require('cors');
+// app.use(cors());
+const DB = require('./database.js');
+
+const authCookieName = 'token';
 
 process.on('uncaughtException', (err) => {
   console.error('Uncaught Exception:', err);
@@ -17,8 +20,6 @@ process.on('unhandledRejection', (reason, promise) => {
 });
 
 console.log('Starting server...');
-
-const authCookieName = 'token';
 
 const users = [];
 
@@ -40,19 +41,21 @@ app.use(`/api`, apiRouter);
 
 // From SIMON: CreateAuth a new user
 apiRouter.post('/auth/create', async (req, res) => {
-  if (await findUser('email', req.body.email)) {
-    res.status(409).send({ msg: 'That User Already Exists' });
-  } else {
-    const user = await createUser(req.body.email, req.body.password);
-
-    setAuthCookie(res, user.token);
-    res.send({ email: user.email });
+  const user = await findUser('email', req.body.email);
+  if (user) {
+    if (await bcrypt.compare(req.body.password, user.password)) {
+      user.token = uuid.v4();
+      await DB.updateUser(user);
+      setAuthCookie(res, user.token);
+      res.send({ email: user.email });
+      return;
+    }
   }
+  res.status(401).send({ msg: 'Unauthorized' });
 });
 
 // GetAuth login an existing user
 apiRouter.post('/auth/login', async (req, res) => {
-
   const user = await findUser('email', req.body.email);
   if (user) {
     if (await bcrypt.compare(req.body.password, user.password)) {
@@ -70,6 +73,7 @@ apiRouter.delete('/auth/logout', async (req, res) => {
   const user = await findUser('token', req.cookies[authCookieName]);
   if (user) {
     delete user.token;
+    DB.updateUser(user);
   }
   res.clearCookie(authCookieName);
   res.status(204).end();
@@ -143,7 +147,7 @@ async function createUser(email, password) {
     password: passwordHash,
     token: uuid.v4(),
   };
-  users.push(user);
+  await DB.addUser(user);
 
   return user;
 }
@@ -151,7 +155,10 @@ async function createUser(email, password) {
 async function findUser(field, value) {
   if (!value) return null;
 
-  return users.find((u) => u[field] === value);
+  if (field === 'token') {
+    return DB.getUserByToken(value);
+  }
+  return DB.getUser(value);
 }
 
 // setAuthCookie in the HTTP response
