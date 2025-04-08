@@ -107,6 +107,7 @@ apiRouter.get('/auth/status', async (req, res) => {
 });
 
 
+
 // Begin Importing articles
 
 // API Key: 8a96e12dfe284e6880c7d5bfac7dbedf
@@ -143,6 +144,35 @@ apiRouter.get('/articles', async (req, res) => {
 });
 
 // End Importing Articles
+// Begin setting news source
+apiRouter.put('/user/news-source', async (req, res) => {
+  const user = await findUser('token', req.cookies[authCookieName]);
+  if (!user) {
+    res.status(401).send({ msg: 'Unauthorized' });
+    return;
+  }
+
+  const { newsSource } = req.body;
+  if (!newsSource) {
+    res.status(400).send({ msg: 'News source is required' });
+    return;
+  }
+
+  user.newsSource = newsSource;
+  await DB.updateUser(user);
+  res.status(200).send({ msg: 'News source updated successfully' });
+});
+// End setting news source
+
+apiRouter.get('/user/profile', async (req, res) => {
+  const user = await findUser('token', req.cookies[authCookieName]);
+  if (!user) {
+    res.status(401).send({ msg: 'Unauthorized' });
+    return;
+  }
+
+  res.send({ email: user.email, newsSource: user.newsSource || '' });
+});
 
 // From SIMON: ASYNC functions
 async function createUser(email, password) {
