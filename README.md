@@ -116,11 +116,11 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **User registration** - 
-- [ ] **User login and logout** - 
-- [ ] **Stores data in MongoDB** - 
-- [ ] **Stores credentials in MongoDB** - 
-- [ ] **Restricts functionality based on authentication** - 
+- [x] **User registration** - Modeled on Simon - passes info through from frontend to index.js to database.js
+- [x] **User login and logout** - Modeled on Simon
+- [x] **Stores data in MongoDB** - Stores user preferences on news source in MongoDB
+- [x] **Stores credentials in MongoDB** - stores username/password/other data in MongoDB
+- [x] **Restricts functionality based on authentication** - blocks access to the articles page without proper authentication
 
 ## 🚀 WebSocket deliverable
 
