@@ -102,8 +102,6 @@ apiRouter.get('/auth/status', async (req, res) => {
   }
 });
 
-
-
 // Begin Importing articles
 
 // API Key: 8a96e12dfe284e6880c7d5bfac7dbedf

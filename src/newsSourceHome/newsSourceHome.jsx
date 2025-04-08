@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import './newsSourceHome.css';
 
 export function NewsSourceHome({ selectedNewsSource, setSelectedNewsSource }) {
