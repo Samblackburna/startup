@@ -49,9 +49,14 @@ apiRouter.post('/auth/create', async (req, res) => {
       setAuthCookie(res, user.token);
       res.send({ email: user.email });
       return;
+    } else {
+      res.status(401).send({ msg: 'Unauthorized' });
     }
   }
-  res.status(401).send({ msg: 'Unauthorized' });
+
+  const newUser = await createUser(req.body.email, req.body.password);
+  setAuthCookie(res, newUser.token);
+  res.send({ email: newUser.email });
 });
 
 // GetAuth login an existing user
@@ -60,6 +65,7 @@ apiRouter.post('/auth/login', async (req, res) => {
   if (user) {
     if (await bcrypt.compare(req.body.password, user.password)) {
       user.token = uuid.v4();
+      await DB.updateUser(user);
       setAuthCookie(res, user.token);
       res.send({ email: user.email });
       return;
