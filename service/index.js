@@ -4,6 +4,7 @@ const express = require('express');
 const uuid = require('uuid');
 const app = express();
 const DB = require('./database.js');
+const { getArticlesBySource } = require('./database');
 
 const authCookieName = 'token';
 
@@ -166,6 +167,16 @@ apiRouter.get('/user/profile', async (req, res) => {
   }
 
   res.send({ email: user.email, newsSource: user.newsSource || '' });
+});
+
+app.get('/api/articles', async (req, res) => {
+  try {
+    const articles = await getArticlesBySource("Sam's News Source");
+    res.json(articles);
+  } catch (error) {
+    console.error('Error fetching articles:', error);
+    res.status(500).json({ error: 'Failed to fetch articles' });
+  }
 });
 
 // From SIMON: ASYNC functions

@@ -126,8 +126,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Backend listens for WebSocket connection** - 
-- [ ] **Frontend makes WebSocket connection** - 
-- [ ] **Data sent over WebSocket connection** - 
-- [ ] **WebSocket data displayed** - 
-- [ ] **Application is fully functional** - 
+- [x] **Backend listens for WebSocket connection** - Modeled on Simon
+- [x] **Frontend makes WebSocket connection** - Modeled on Simon
+- [x] **Data sent over WebSocket connection** - Modeled on Simon
+- [x] **WebSocket data displayed** - drop down notifications occur (currently at regular intervals)
+- [x] **Application is fully functional** - When I simulate the posting of a new article to "Sam's News Source" (currently scheduled for every two minutes), all users who currently have the source selected will get a drop down notification. When clicked, this notification will reroute them to the new article
