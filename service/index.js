@@ -120,7 +120,19 @@ apiRouter.get('/articles', async (req, res) => {
     // Fetch articles from MongoDB
     try {
       const articles = await getArticlesBySource(source);
-      res.json(articles);
+
+      // Transform the articles to match frontend expectations
+      const transformedArticles = articles.map((article) => ({
+        title: article.title,
+        subtitle: article.subtitle || '',
+        newsSource: article.source || 'Unknown Source',
+        authors: article.authors || 'Unknown Author(s)',
+        publicationDate: article.date || new Date(),
+        content: article.content || '',
+        url: article.url || '#',
+      }));
+
+      res.json(transformedArticles);
     } catch (error) {
       console.error('Error fetching articles from MongoDB:', error);
       res.status(500).json({ error: 'Failed to fetch articles from database' });

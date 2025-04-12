@@ -3,7 +3,6 @@ const { getArticlesBySource, articlesCollection } = require('./database');
 
 // Create a WebSocket server
 const wss = new WebSocketServer({ port: 8080 });
-
 console.log('WebSocket server started on ws://localhost:8080');
 
 // Function to broadcast a message to all connected clients
@@ -62,4 +61,3 @@ setInterval(async () => {
   await postNewArticle();
   await deleteOldArticles();
 }, 2 * 60 * 1000);
-

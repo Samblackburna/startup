@@ -18,6 +18,7 @@ const articlesCollection = db.collection('articles');
         {
           title: 'Breaking News: Local Hero Saves the Day',
           subtitle: "Sample News Source Example 1",
+          authors: 'Sam',
           content: 'A local hero stepped in to save the day in an incredible act of bravery...',
           newsSource: "Sam's News Source",
           publicationDate: new Date(),
@@ -25,6 +26,7 @@ const articlesCollection = db.collection('articles');
         {
           title: 'Community Spotlight: Small Businesses Thriving',
           subtitle: "Sample News Source Example 2",
+          authors: 'Sam',
           content: 'Small businesses in the area are seeing a resurgence thanks to community support...',
           newsSource: "Sam's News Source",
           publicationDate: new Date(),
@@ -32,6 +34,7 @@ const articlesCollection = db.collection('articles');
         {
           title: 'Weather Update: Sunny Days Ahead',
           subtitle: "Sample News Source Example 3",
+          authors: 'Sam',
           content: 'The weather forecast predicts sunny skies for the next week...',
           newsSource: "Sam's News Source",
           publicationDate: new Date(),

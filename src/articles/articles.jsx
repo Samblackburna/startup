@@ -15,18 +15,7 @@ export function Articles({ selectedNewsSource }) {
   const [articleIndex, setArticleIndex] = useState(0);
   const [filteredArticles, setFilteredArticles] = useState([]);
   const [articles, setArticles] = useState([]);
-
-  console.log('Selected News Source:', selectedNewsSource);
-
-  /* useEffect(() => {
-    try {
-      const filtered = articles.filter(article => article.newsSource === selectedNewsSource);
-      setFilteredArticles(filtered);
-      setArticleIndex(0);
-    } catch (error) {
-      console.error("Error filtering articles:", error);
-    }
-  }, [selectedNewsSource]); */
+  const [notification, setNotification] = useState(null);
 
   useEffect(() => {
     fetch(`/api/articles?source=${selectedNewsSource}`)
@@ -42,22 +31,32 @@ export function Articles({ selectedNewsSource }) {
     const ws = new WebSocket('ws://localhost:8080');
 
     ws.onmessage = (event) => {
-      const newArticle = JSON.parse(event.data);
-      setArticles((prevArticles) => [newArticle, ...prevArticles]);
+      const message = JSON.parse(event.data);
+
+      if (message.type === 'new-article') {
+        const newArticle = message.article;
+
+        // Add the new article to the list
+        setArticles((prevArticles) => [newArticle, ...prevArticles]);
+
+        // Show a notification
+        setNotification(`New article posted: ${newArticle.title}`);
+        setTimeout(() => setNotification(null), 5000); // Clear notification after 5 seconds
+      }
     };
 
     return () => ws.close();
   }, []);
 
   const treatPreviousArticle = () => {
-    setArticleIndex((previousArticleIndex) => 
-      (previousArticleIndex > 0 ? previousArticleIndex - 1 : filteredArticles.length - 1)
+    setArticleIndex((previousArticleIndex) =>
+      previousArticleIndex > 0 ? previousArticleIndex - 1 : filteredArticles.length - 1
     );
   };
 
   const treatNextArticle = () => {
-    setArticleIndex((previousArticleIndex) => 
-      (previousArticleIndex < filteredArticles.length - 1 ? previousArticleIndex + 1 : 0)
+    setArticleIndex((previousArticleIndex) =>
+      previousArticleIndex < filteredArticles.length - 1 ? previousArticleIndex + 1 : 0
     );
   };
 
@@ -65,9 +64,11 @@ export function Articles({ selectedNewsSource }) {
   try {
     currentArticle = filteredArticles[articleIndex];
   } catch (error) {
-    console.error("Error accessing current article:", error);
+    console.error('Error accessing current article:', error);
     currentArticle = null;
   }
+
+  console.log('Current Article:', currentArticle);
 
   if (!currentArticle) {
     return (
@@ -79,6 +80,7 @@ export function Articles({ selectedNewsSource }) {
 
   return (
     <main>
+      {notification && <div className="notification">{notification}</div>}
       <div className="side-zone left-zone" onClick={treatPreviousArticle}></div>
       <div className="side-zone right-zone" onClick={treatNextArticle}></div>
       <h1 style={{ margin: 0 }}>{currentArticle.title || 'No Title Available'}</h1>
@@ -89,13 +91,12 @@ export function Articles({ selectedNewsSource }) {
         <h3 className="publication date">{currentArticle.publicationDate || 'Unknown Date'}</h3>
       </div>
       <div className="main-article-content">
-        <p>
-          {currentArticle.content || 'No Content Available'}
-        </p>
-        <a href={currentArticle.url} target="_blank" rel="noopener noreferrrer">Read Full Article</a>
+        <p>{currentArticle.content || 'No Content Available'}</p>
+        <a href={currentArticle.url} target="_blank" rel="noopener noreferrer">
+          Read Full Article
+        </a>
       </div>
       <div>
-        <h1>Articles</h1>
         {articles.map((article, index) => (
           <div key={index}>
             <h2>{article.title}</h2>
