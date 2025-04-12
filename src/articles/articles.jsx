@@ -29,6 +29,11 @@ export function Articles({ selectedNewsSource }) {
 
   useEffect(() => {
     const ws = new WebSocket('ws://localhost:8080');
+    
+    // diagnosing posting issue
+    ws.onopen = () => {
+      console.log('WebSocket connection established');
+    };
 
     ws.onmessage = (event) => {
       const message = JSON.parse(event.data);

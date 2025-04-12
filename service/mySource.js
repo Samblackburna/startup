@@ -7,6 +7,8 @@ console.log('WebSocket server started on ws://localhost:8080');
 
 // Function to broadcast a message to all connected clients
 function broadcast(data) {
+  // diagnosing posting issue
+  console.log('Broadcasting data:', data);
   wss.clients.forEach((client) => {
     if (client.readyState === client.OPEN) {
       client.send(JSON.stringify(data));
@@ -58,6 +60,8 @@ async function deleteOldArticles() {
 
 // Schedule the posting of new articles every 2 minutes
 setInterval(async () => {
+  // diagnosing posting issue
+  console.log('Scheduler Running')
   await postNewArticle();
   await deleteOldArticles();
 }, 2 * 60 * 1000);
