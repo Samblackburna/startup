@@ -26,16 +26,19 @@ async function postNewArticle() {
       const article = sampleArticles.shift(); // Get the first article
       article.publicationDate = new Date(); // Update the publication date to now
 
+      // This is straight up an AI recommendation: Remove the _id field to avoid duplicate key errors
+      const { _id, ...articleWithoutId } = article;
+
       // Insert the updated article back into the database
-      await articlesCollection.insertOne(article);
+      await articlesCollection.insertOne(articleWithoutId);
 
       // Broadcast the new article to all connected clients
       broadcast({
         type: 'new-article',
-        article,
+        article: articleWithoutId,
       });
 
-      console.log('Broadcasted new article:', article.title);
+      console.log('Broadcasted new article:', articleWithoutId.title);
     }
   } catch (error) {
     console.error('Error posting new article:', error);

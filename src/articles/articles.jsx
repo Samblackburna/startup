@@ -41,8 +41,11 @@ export function Articles({ selectedNewsSource }) {
       if (message.type === 'new-article') {
         const newArticle = message.article;
 
-        // Add the new article to the list
+        // Add the new article to the list of articles
         setArticles((prevArticles) => [newArticle, ...prevArticles]);
+
+        // Optionally update filteredArticles if it needs to reflect the new article
+        setFilteredArticles((prevFilteredArticles) => [newArticle, ...prevFilteredArticles]);
 
         // Show a notification
         setNotification(`New article posted: ${newArticle.title}`);
