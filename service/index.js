@@ -115,26 +115,39 @@ apiRouter.get('/articles', async (req, res) => {
   }
 
   const source = req.query.source;
-  const URL = `https://newsapi.org/v2/top-headlines?sources=${source}&apiKey=8a96e12dfe284e6880c7d5bfac7dbedf`;
-  try {
-    const response = await fetch(URL);
-    const articles = await response.json();
 
-    // Transform the articles to match frontend expectations
-    const transformedArticles = articles.articles.map((article) => ({
-      title: article.title,
-      subtitle: article.description || '', // Use description as subtitle
-      newsSource: article.source.name, // Use source.name as newsSource
-      authors: article.author || 'Unknown', // Use author or default to 'Unknown'
-      publicationDate: article.publishedAt, // Use publishedAt as publicationDate
-      content: article.content || '', // Use content or default to an empty string
-      url: article.url, // Full URL
-    }));
+  if (source === "Sam's News Source") {
+    // Fetch articles from MongoDB
+    try {
+      const articles = await getArticlesBySource(source);
+      res.json(articles);
+    } catch (error) {
+      console.error('Error fetching articles from MongoDB:', error);
+      res.status(500).json({ error: 'Failed to fetch articles from database' });
+    }
+  } else {
+    // Fetch articles from external API
+    const URL = `https://newsapi.org/v2/top-headlines?sources=${source}&apiKey=8a96e12dfe284e6880c7d5bfac7dbedf`;
+    try {
+      const response = await fetch(URL);
+      const articles = await response.json();
 
-    res.send(transformedArticles);
-  } catch (error) {
-    console.error('Error fetching articles:', error);
-    res.status(500).send({ msg: 'Failed to fetch articles' });
+      // Transform the articles to match frontend expectations
+      const transformedArticles = articles.articles.map((article) => ({
+        title: article.title,
+        subtitle: article.description || '', // Use description as subtitle
+        newsSource: article.source.name, // Use source.name as newsSource
+        authors: article.author || 'Unknown', // Use author or default to 'Unknown'
+        publicationDate: article.publishedAt, // Use publishedAt as publicationDate
+        content: article.content || '', // Use content or default to an empty string
+        url: article.url, // Full URL
+      }));
+
+      res.send(transformedArticles);
+    } catch (error) {
+      console.error('Error fetching articles from external API:', error);
+      res.status(500).send({ msg: 'Failed to fetch articles from external API' });
+    }
   }
 });
 

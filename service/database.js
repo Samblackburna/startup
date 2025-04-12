@@ -17,21 +17,24 @@ const articlesCollection = db.collection('articles');
       const sampleArticles = [
         {
           title: 'Breaking News: Local Hero Saves the Day',
+          subtitle: "Sample News Source Example 1",
           content: 'A local hero stepped in to save the day in an incredible act of bravery...',
-          source: "Sam's News Source",
-          date: new Date(),
+          newsSource: "Sam's News Source",
+          publicationDate: new Date(),
         },
         {
           title: 'Community Spotlight: Small Businesses Thriving',
+          subtitle: "Sample News Source Example 2",
           content: 'Small businesses in the area are seeing a resurgence thanks to community support...',
-          source: "Sam's News Source",
-          date: new Date(),
+          newsSource: "Sam's News Source",
+          publicationDate: new Date(),
         },
         {
           title: 'Weather Update: Sunny Days Ahead',
+          subtitle: "Sample News Source Example 3",
           content: 'The weather forecast predicts sunny skies for the next week...',
-          source: "Sam's News Source",
-          date: new Date(),
+          newsSource: "Sam's News Source",
+          publicationDate: new Date(),
         },
       ];
 
@@ -69,4 +72,5 @@ module.exports = {
   getUserByToken,
   addUser,
   updateUser,
+  getArticlesBySource,
 };

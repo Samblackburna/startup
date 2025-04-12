@@ -14,6 +14,7 @@ const articles = [
 export function Articles({ selectedNewsSource }) {
   const [articleIndex, setArticleIndex] = useState(0);
   const [filteredArticles, setFilteredArticles] = useState([]);
+  const [articles, setArticles] = useState([]);
 
   console.log('Selected News Source:', selectedNewsSource);
 
@@ -36,6 +37,17 @@ export function Articles({ selectedNewsSource }) {
       })
       .catch((error) => console.error('Error fetching articles:', error));
   }, [selectedNewsSource]);
+
+  useEffect(() => {
+    const ws = new WebSocket('ws://localhost:8080');
+
+    ws.onmessage = (event) => {
+      const newArticle = JSON.parse(event.data);
+      setArticles((prevArticles) => [newArticle, ...prevArticles]);
+    };
+
+    return () => ws.close();
+  }, []);
 
   const treatPreviousArticle = () => {
     setArticleIndex((previousArticleIndex) => 
@@ -81,6 +93,16 @@ export function Articles({ selectedNewsSource }) {
           {currentArticle.content || 'No Content Available'}
         </p>
         <a href={currentArticle.url} target="_blank" rel="noopener noreferrrer">Read Full Article</a>
+      </div>
+      <div>
+        <h1>Articles</h1>
+        {articles.map((article, index) => (
+          <div key={index}>
+            <h2>{article.title}</h2>
+            <p>{article.subtitle}</p>
+            <p>{new Date(article.publicationDate).toLocaleString()}</p>
+          </div>
+        ))}
       </div>
     </main>
   );
