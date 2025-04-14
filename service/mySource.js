@@ -1,16 +1,13 @@
 const { WebSocketServer } = require('ws');
 const { getArticlesBySource, articlesCollection } = require('./database');
 
-// finding avaulable port
-const PORT = process.env.PORT || 8080;
-
 // Create a WebSocket server
-const wss = new WebSocketServer({ port: PORT });
-console.log(`WebSocket server started on ws://0.0.0.0:${wss.options.port}`);
+const wss = new WebSocketServer({ port: 8080 });
+console.log('WebSocket server started on ws://localhost:8080');
 
 // Function to broadcast a message to all connected clients
 function broadcast(data) {
-  // diagnosing posting issue
+  // diagnosing p
   console.log('Broadcasting data:', data);
   wss.clients.forEach((client) => {
     if (client.readyState === client.OPEN) {
@@ -29,19 +26,16 @@ async function postNewArticle() {
       const article = sampleArticles.shift(); // Get the first article
       article.publicationDate = new Date(); // Update the publication date to now
 
-      // This is straight up an AI recommendation: Remove the _id field to avoid duplicate key errors
-      const { _id, ...articleWithoutId } = article;
-
       // Insert the updated article back into the database
-      await articlesCollection.insertOne(articleWithoutId);
+      await articlesCollection.insertOne(article);
 
       // Broadcast the new article to all connected clients
       broadcast({
         type: 'new-article',
-        article: articleWithoutId,
+        article,
       });
 
-      console.log('Broadcasted new article:', articleWithoutId.title);
+      console.log('Broadcasted new article:', article.title);
     }
   } catch (error) {
     console.error('Error posting new article:', error);
