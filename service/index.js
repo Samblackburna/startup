@@ -6,6 +6,9 @@ const app = express();
 const DB = require('./database.js');
 const { getArticlesBySource } = require('./database');
 
+// Import the auto-generation module
+require('./mySource.js');
+
 const authCookieName = 'token';
 
 process.on('uncaughtException', (err) => {
