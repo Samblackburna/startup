@@ -1,9 +1,12 @@
 const { WebSocketServer } = require('ws');
 const { getArticlesBySource, articlesCollection } = require('./database');
 
+// finding avaulable port
+const PORT = process.env.PORT || 8080;
+
 // Create a WebSocket server
-const wss = new WebSocketServer({ port: 8080 });
-console.log('WebSocket server started on ws://localhost:8080');
+const wss = new WebSocketServer({ port: PORT });
+console.log(`WebSocket server started on ws://0.0.0.0:${wss.options.port}`);
 
 // Function to broadcast a message to all connected clients
 function broadcast(data) {

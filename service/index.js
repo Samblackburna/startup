@@ -120,6 +120,7 @@ apiRouter.get('/articles', async (req, res) => {
     // Fetch articles from MongoDB
     try {
       const articles = await getArticlesBySource(source);
+      console.log('Fetched articles from MongoDB:', articles.length)
 
       // Transform the articles to match frontend expectations
       const transformedArticles = articles.map((article) => ({
