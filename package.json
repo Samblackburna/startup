@@ -35,8 +35,7 @@
     "react-router-dom": "^7.3.0",
     "rollup": "^4.34.6",
     "source-map-js": "^1.2.1",
-    "uuid": "^11.1.0",
-    "ws": "^8.18.1"
+    "uuid": "^11.1.0"
   },
   "repository": {
     "type": "git",

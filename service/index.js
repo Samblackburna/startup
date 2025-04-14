@@ -158,8 +158,8 @@ apiRouter.get('/articles', async (req, res) => {
 
       res.send(transformedArticles);
     } catch (error) {
-      console.error('Error fetching articles from external API:', error);
-      res.status(500).send({ msg: 'Failed to fetch articles from external API' });
+      console.error('Error fetching articles:', error);
+      res.status(500).send({ msg: 'Failed to fetch articles' });
     }
   }
 });

@@ -4,7 +4,6 @@ import './articles.css';
 export function Articles({ selectedNewsSource }) {
   const [articleIndex, setArticleIndex] = useState(0);
   const [filteredArticles, setFilteredArticles] = useState([]);
-  const [articles, setArticles] = useState([]);
 
   console.log('Selected News Source:', selectedNewsSource);
 
