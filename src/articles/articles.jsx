@@ -20,7 +20,7 @@ export function Articles({ selectedNewsSource }) {
 
   useEffect(() => {
     const wsProtocol = window.location.protocol === 'https:' ? 'wss' : 'ws';
-    // If we're in development with Vite (port 5173), use 4000 where your Node server runs -- Will this work in production?
+    // Overides Vite (port 5173) locally, use 4000 when Node server runs -- Will this work in production?
     let wsHost = window.location.host;
     if (window.location.port === '5173') {
       wsHost = `${window.location.hostname}:4000`;

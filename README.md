@@ -130,4 +130,4 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [x] **Frontend makes WebSocket connection** - Modeled on Simon
 - [x] **Data sent over WebSocket connection** - Modeled on Simon
 - [x] **WebSocket data displayed** - drop down notifications occur (currently at regular intervals)
-- [x] **Application is fully functional** - When I simulate the posting of a new article to "Sam's News Source" (currently scheduled for every two minutes), all users who currently have the source selected will get a drop down notification. When clicked, this notification will reroute them to the new article
+- [x] **Application is fully functional** - When I simulate the posting of a new article to "Sam's News Source" (currently scheduled for every two minutes), all users who currently have the source selected will get a drop down notification informing them that the article has been posted. The article - it'll be the same, only with a different date/time stamp - will then be added to the news source queue, available for those who wish to scroll to it.

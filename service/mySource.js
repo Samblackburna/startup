@@ -1,13 +1,13 @@
 const { WebSocketServer } = require('ws');
 const { getArticlesBySource, articlesCollection } = require('./database');
 
-function initializeWebSocket(server) {
+function initializeWebSocket(server) { //analagous to peerProxy function from Simon, I just figured this name was more generally appropriate
     const wss = new WebSocketServer({ server });
     console.log(`WebSocket server started on ws://${server.address().address}:${server.address().port}`);
 
     // Function to broadcast a message to all connected clients
     function broadcast(data) {
-        console.log('Broadcasting data:', data); // Just for debugging
+        console.log('Sharing data:', data); // Just for debugging
         wss.clients.forEach((client) => {
             if (client.readyState === client.OPEN) {
                 client.send(JSON.stringify(data));
@@ -15,12 +15,12 @@ function initializeWebSocket(server) {
         });
     }
 
-    // Function to rotate through sample articles and broadcast them
+    // Function to rotate through sample articles and 'broadcast' them
     async function postNewArticle() {
         try {
             const sampleArticles = await getArticlesBySource("Sam's News Source");
 
-            if (sampleArticles.length > 0) {
+            if (sampleArticles.length > 0) {  
                 // Rotate through the articles
                 const article = sampleArticles.shift();
                 article.date = new Date(); // Debugging the date field
@@ -52,7 +52,7 @@ function initializeWebSocket(server) {
             });
     
             if (result.deletedCount > 0) {
-                console.log(`Deleted ${result.deletedCount} old articles.`);
+                console.log(`Deleted ${result.deletedCount} old article(s).`);
             }
         } catch (error) {
             console.error('Error deleting old articles:', error);
