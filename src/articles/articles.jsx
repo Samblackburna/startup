@@ -37,8 +37,7 @@ export function Articles({ selectedNewsSource }) {
 
     ws.onmessage = (event) => {
       const newArticle = JSON.parse(event.data);
-      setArticles((prevArticles) => [newArticle, prevArticles]);
-      setFilteredArticles((prevArticles) => [newArticle, prevArticles]); 
+      setFilteredArticles((prevArticles) => [newArticle, ...prevArticles]);
     };
 
     return () => ws.close();

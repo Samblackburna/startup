@@ -1,13 +1,16 @@
 const { WebSocketServer } = require('ws');
 const { getArticlesBySource, articlesCollection } = require('./database');
 
+// finding avaulable port
+const PORT = process.env.PORT || 8080;
+
 // Create a WebSocket server
-const wss = new WebSocketServer({ port: 8080 });
-console.log('WebSocket server started on ws://localhost:8080');
+const wss = new WebSocketServer({ port: PORT });
+console.log(`WebSocket server started on ws://0.0.0.0:${wss.options.port}`);
 
 // Function to broadcast a message to all connected clients
 function broadcast(data) {
-  // diagnosing p
+  // diagnosing posting issue
   console.log('Broadcasting data:', data);
   wss.clients.forEach((client) => {
     if (client.readyState === client.OPEN) {
@@ -23,19 +26,19 @@ async function postNewArticle() {
 
     if (sampleArticles.length > 0) {
       // Rotate through the articles
-      const article = sampleArticles.shift(); // Get the first article
-      article.publicationDate = new Date(); // Update the publication date to now
+      const article = sampleArticles.shift();
+      article.date = new Date(); // Update the "date" field
 
-      // Insert the updated article back into the database
-      await articlesCollection.insertOne(article);
+      const { _id, ...articleWithoutId } = article;
 
-      // Broadcast the new article to all connected clients
+      await articlesCollection.insertOne(articleWithoutId);
+
       broadcast({
         type: 'new-article',
-        article,
+        article: articleWithoutId,
       });
 
-      console.log('Broadcasted new article:', article.title);
+      console.log('Broadcasted new article:', articleWithoutId.title);
     }
   } catch (error) {
     console.error('Error posting new article:', error);

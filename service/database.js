@@ -72,4 +72,6 @@ module.exports = {
   getUserByToken,
   addUser,
   updateUser,
+  getArticlesBySource,
+  articlesCollection,
 };
