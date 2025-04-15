@@ -4,18 +4,9 @@ import './articles.css';
 export function Articles({ selectedNewsSource }) {
   const [articleIndex, setArticleIndex] = useState(0);
   const [filteredArticles, setFilteredArticles] = useState([]);
+  const [notification, setNotification] = useState('');
 
   console.log('Selected News Source:', selectedNewsSource);
-
-  /* useEffect(() => {
-    try {
-      const filtered = articles.filter(article => article.newsSource === selectedNewsSource);
-      setFilteredArticles(filtered);
-      setArticleIndex(0);
-    } catch (error) {
-      console.error("Error filtering articles:", error);
-    }
-  }, [selectedNewsSource]); */
 
   useEffect(() => {
     fetch(`/api/articles?source=${selectedNewsSource}`)
@@ -37,7 +28,12 @@ export function Articles({ selectedNewsSource }) {
 
     ws.onmessage = (event) => {
       const newArticle = JSON.parse(event.data);
-      setFilteredArticles((prevArticles) => [newArticle, ...prevArticles]);
+      setFilteredArticles((prevArticles) => [newArticle.article || newArticle, ...prevArticles]);
+      if (newArticle.notification) {
+        setNotification(newArticle.notification);
+        // Clear notification after 5 seconds
+        setTimeout(() => setNotification(''), 5000);
+      }
     };
 
     return () => ws.close();
@@ -73,6 +69,14 @@ export function Articles({ selectedNewsSource }) {
 
   return (
     <main>
+      {notification && (
+        <div className="notification" onClick={() => {
+          setArticleIndex(0);
+          setNotification('');
+        }}>
+          {notification}
+        </div>
+      )}
       <div className="side-zone left-zone" onClick={treatPreviousArticle}></div>
       <div className="side-zone right-zone" onClick={treatNextArticle}></div>
       <h1 style={{ margin: 0 }}>{currentArticle.title || 'No Title Available'}</h1>
@@ -86,7 +90,7 @@ export function Articles({ selectedNewsSource }) {
         <p>
           {currentArticle.content || 'No Content Available'}
         </p>
-        <a href={currentArticle.url} target="_blank" rel="noopener noreferrrer">Read Full Article</a>
+        <a href={currentArticle.url} target="_blank" rel="noopener noreferrer">Read Full Article</a>
       </div>
     </main>
   );

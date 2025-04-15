@@ -10,8 +10,7 @@ console.log(`WebSocket server started on ws://0.0.0.0:${wss.options.port}`);
 
 // Function to broadcast a message to all connected clients
 function broadcast(data) {
-  // diagnosing posting issue
-  console.log('Broadcasting data:', data);
+  console.log('Broadcasting data:', data); // Just for debugging
   wss.clients.forEach((client) => {
     if (client.readyState === client.OPEN) {
       client.send(JSON.stringify(data));
@@ -27,15 +26,17 @@ async function postNewArticle() {
     if (sampleArticles.length > 0) {
       // Rotate through the articles
       const article = sampleArticles.shift();
-      article.date = new Date(); // Update the "date" field
+      article.date = new Date(); // Debugging the date field
 
       const { _id, ...articleWithoutId } = article;
 
       await articlesCollection.insertOne(articleWithoutId);
 
+      // Broadcast new article with a notification message
       broadcast({
         type: 'new-article',
         article: articleWithoutId,
+        notification: `New article posted: ${articleWithoutId.title}`
       });
 
       console.log('Broadcasted new article:', articleWithoutId.title);
