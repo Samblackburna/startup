@@ -20,9 +20,12 @@ export function Articles({ selectedNewsSource }) {
 
   useEffect(() => {
     const wsProtocol = window.location.protocol === 'https:' ? 'wss' : 'ws';
-    const wsHost = window.location.hostname;
-    const wsPort = 8080;
-    const wsUrl = `${wsProtocol}://${wsHost}:${wsPort}`;
+    // If we're in development with Vite (port 5173), use 4000 where your Node server runs -- Will this work in production?
+    let wsHost = window.location.host;
+    if (window.location.port === '5173') {
+      wsHost = `${window.location.hostname}:4000`;
+    }
+    const wsUrl = `${wsProtocol}://${wsHost}`;
 
     const ws = new WebSocket(wsUrl);
 
@@ -37,7 +40,7 @@ export function Articles({ selectedNewsSource }) {
     };
 
     return () => ws.close();
-  }, []);
+  }, [selectedNewsSource]);
 
   const treatPreviousArticle = () => {
     setArticleIndex((previousArticleIndex) => 
